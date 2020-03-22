@@ -1,5 +1,6 @@
 package booking.features;
 
+import booking.questions.TheSearchResult;
 import booking.tasks.BookARoom;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.screenplay.Actor;
@@ -14,6 +15,8 @@ import booking.tasks.OpenTheApplication;
 
 import java.time.LocalDateTime;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 
 @RunWith(SerenityRunner.class)
@@ -48,6 +51,8 @@ public class BookingRoomStory {
                     .andChildren(5)
                     .build()
         );
+
+        anna.should(seeThat("The number of matched rooms", TheSearchResult.totalRoom(), equalTo(200)));
 
     }
 }
