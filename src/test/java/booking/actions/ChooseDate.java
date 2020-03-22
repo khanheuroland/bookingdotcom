@@ -3,6 +3,7 @@ package booking.actions;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
+import net.serenitybdd.screenplay.targets.Target;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,7 +29,9 @@ public class ChooseDate implements Interaction {
     @Step("{0} select as date #dateInString for #fieldTitle")
     @Override
     public <T extends Actor> void performAs(T actor) {
-        WebDriver driver = BrowseTheWeb.as(actor).getDriver();
-        driver.findElement(By.xpath("//td[@data-date=\""+ this.dateInString+ "\"]")).click();
+       /* WebDriver driver = BrowseTheWeb.as(actor).getDriver();
+        driver.findElement(By.xpath("//td[@data-date=\""+ this.dateInString+ "\"]")).click();*/
+        Target dateSelector = Target.the("") .locatedBy("//td[@data-date=\""+ this.dateInString+ "\"]");
+        dateSelector.resolveFor(actor).click();
     }
 }

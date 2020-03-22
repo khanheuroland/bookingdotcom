@@ -1,5 +1,6 @@
 package booking.tasks;
 
+import booking.actions.Book;
 import booking.actions.Choose;
 import booking.actions.ChooseDate;
 import booking.ui.BookingBox;
@@ -34,7 +35,9 @@ public class BookARoom implements Task {
         actor.attemptsTo(
                 Choose.aDestination(this.destination),
                 Choose.aDateForCheckIn(this.from),
-                Choose.aDateForCheckOut(this.to)
+                Choose.aDateForCheckOut(this.to),
+                Book.rooms(5).forAdult(10).andChildren(4),
+                Click.on(BookingBox.SEARCH_BUTTON)
         );
     }
 
