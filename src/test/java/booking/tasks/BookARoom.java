@@ -19,11 +19,17 @@ public class BookARoom implements Task {
     private  String destination;
     private  LocalDateTime from;
     private  LocalDateTime to;
+    private int numberOfRoom;
+    private int numberOfAdult;
+    private int numberOfChild;
 
-    public BookARoom(String destination, LocalDateTime from, LocalDateTime to) {
+    public BookARoom(String destination, LocalDateTime from, LocalDateTime to, int room, int adult, int child) {
         this.destination = destination;
         this.from = from;
         this.to = to;
+        this.numberOfRoom=room;
+        this.numberOfAdult=adult;
+        this.numberOfChild=child;
     }
 
     public static BookARoomBuilder toDestination(String destination) {
@@ -36,7 +42,7 @@ public class BookARoom implements Task {
                 Choose.aDestination(this.destination),
                 Choose.aDateForCheckIn(this.from),
                 Choose.aDateForCheckOut(this.to),
-                Book.rooms(5).forAdult(10).andChildren(4),
+                Book.rooms(numberOfRoom).forAdult(numberOfAdult).andChildren(numberOfChild),
                 Click.on(BookingBox.SEARCH_BUTTON)
         );
     }
@@ -46,6 +52,10 @@ public class BookARoom implements Task {
         private  String destination;
         private  LocalDateTime from;
         private  LocalDateTime to;
+        private  int room;
+        private  int adult;
+        private  int child;
+
         public BookARoomBuilder(String destination)
         {
             this.destination = destination;
@@ -63,9 +73,27 @@ public class BookARoom implements Task {
             return this;
         }
 
+        public BookARoomBuilder noOfRoom(int room)
+        {
+            this.room = room;
+            return this;
+        }
+
+        public BookARoomBuilder forAdult(int adult)
+        {
+            this.adult = adult;
+            return this;
+        }
+
+        public BookARoomBuilder andChildren(int child)
+        {
+            this.child = child;
+            return this;
+        }
+
         public BookARoom build()
         {
-            return instrumented(BookARoom.class, destination, from, to);
+            return instrumented(BookARoom.class, destination, from, to, room, adult, child);
         }
     }
 }

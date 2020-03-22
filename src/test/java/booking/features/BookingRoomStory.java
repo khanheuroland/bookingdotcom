@@ -33,14 +33,20 @@ public class BookingRoomStory {
     }
 
     @Test
-    public void booking_a_room_on_booking_site_for_5_days() {
+    public void booking_5_rooms_for_10_adult_and_5_children_for_5_days_at_PHU_QUOC() {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime backday = today.plusDays(5);
 
         anna.wasAbleTo(openTheApplication);
 
         anna.attemptsTo(
-            BookARoom.toDestination("Phu Quoc").from(today).to(backday).build()
+            BookARoom.toDestination("Phu Quoc")
+                    .from(today)
+                    .to(backday)
+                    .noOfRoom(5)
+                    .forAdult(10)
+                    .andChildren(5)
+                    .build()
         );
 
     }
