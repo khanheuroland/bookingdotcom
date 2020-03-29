@@ -8,8 +8,11 @@ import com.google.common.base.Converter;
 import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.conditions.Check;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.LocalDateTime;
 

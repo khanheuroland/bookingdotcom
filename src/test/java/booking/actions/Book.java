@@ -3,7 +3,11 @@ package booking.actions;
 import booking.ui.BookingBox;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
+import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.thucydides.core.annotations.Step;
+import net.thucydides.core.webdriver.WebDriverFacade;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static net.serenitybdd.screenplay.Tasks.instrumented;
 
@@ -81,6 +85,12 @@ public class Book implements Interaction{
             }
         }
 
+        WebDriver facade = BrowseTheWeb.as(actor).getDriver();
+        WebDriver driver= ((WebDriverFacade) facade).getProxiedDriver();
+        String platformName = ((RemoteWebDriver) driver).getCapabilities().getPlatform().toString();
+        if (platformName.toUpperCase() == "ANDROID") {
+            BookingBox.DONE_GUESS.resolveFor(actor).click();
+        }
     }
 
     public static class GuestBuilder

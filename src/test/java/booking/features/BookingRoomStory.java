@@ -37,7 +37,7 @@ public class BookingRoomStory {
 
     @Test
     public void booking_5_rooms_for_10_adult_and_5_children_for_5_days_at_PHU_QUOC() {
-        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime today = LocalDateTime.now().plusDays(7);
         LocalDateTime backday = today.plusDays(5);
 
         anna.wasAbleTo(openTheApplication);
